@@ -22,7 +22,7 @@ struct FeedbackPage: View {
     init() {
         UITextView.appearance().backgroundColor = .clear
     }
-
+    
     var body: some View {
         GeometryReader { geometry in
             let screenWidth = geometry.size.width
@@ -33,8 +33,6 @@ struct FeedbackPage: View {
                     .ignoresSafeArea()
                 
                 VStack { // back button, Logo, selection, text box x2, submit
-                    //                    HStack { // volume button
-                    //                    Spacer()
                     Button(action: backButton) {
                         Image("MCQppiBACK")
                             .resizable()
@@ -64,68 +62,46 @@ struct FeedbackPage: View {
                     .accentColor(.red)
                     .frame(width: screenWidth / 1.25)
                     
-//                    ZStack(alignment: .topLeading) {
+                    ZStack(alignment: .topLeading) {
 //                        RoundedRectangle(cornerRadius: 8)
 //                            .fill(Color.orange.opacity(0.5))
                         
-                        TextEditor(text: .constant("Send constructive and productive feedback!"))
+                        TextEditor(text: $userFeedback)
                             .frame(width: screenWidth / 1.25, height: screenHeight / 3)
-                        //                        .foregroundColor(Color.black)
-//                                                .background(.red)
                             .colorMultiply(.orange.opacity(0.4))
-//                            .background(RoundedRectangle(cornerRadius: 8)
-//                                .fill(Color.orange.opacity(0.4)))
                             .padding()
                         
-//                        if !userFeedback.isEmpty {
-//                            Text("Send constructive and productive feedback!")
-//                                .foregroundColor(.gray)
-//                                .padding(.horizontal, 14)
-//                                .padding(.vertical, 12)
+                        if userFeedback.isEmpty {
+                            Text("Send constructive and productive feedback!")
+                                .frame(width: screenWidth / 1.25, height: screenHeight / 3)
+                                .foregroundStyle(.gray)
+                                .opacity(userFeedback.isEmpty ? 1 : 0)
+                                .padding()
+                                .foregroundColor(.gray)
 //                                .allowsHitTesting(false) // lets click go through
-//                        }
-//                    }
-                    
-//                    TextField(text: $userFeedback, prompt: Text("Send constructive and productive feedback!")) {
-//                        Text("Username")
-//                    }
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .frame(height: screenHeight / 3)
-//                    .background(RoundedRectangle(cornerRadius: 8)
-//                        .fill(Color.orange.opacity(0.4)))
-//                    .padding()
-                    
+                        }
+                    } // END ZStack
+                                        
                     // Optional email field
-                    TextField(text: $userFeedback, prompt: Text("Email (optional)")) {
+                    TextField(text: $emailOptional, prompt: Text("Email (optional)")) {
                         Text("Username")
-                        //                            .background(Color.red)
+                            .background(Color.red)
+                        
                     }
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .textFieldStyle(.plain)
+                    .frame(width: screenWidth / 1.25)
+                    .background(Color.orange.opacity(0.4))
                     .padding()
+                    .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                     Button(action: backButton) {
                         Text("SUBMIT")
                             .foregroundColor(.red)
-                        //                            .font(.headline)
                             .font(.system(size: 20, weight: .bold, design: .default))
                     }
                     
-                    
-                    //                    TextField(
-                    //                           "Send constructive and productive feedback!",
-                    //                           text: $userFeedback
-                    //                       )
-                    //                       .focused($userFeedbackFieldIsFocused)
-                    //                       .onSubmit {
-                    //                           validate(name: userFeedback)
-                    //                       }
-                    //                       .textInputAutocapitalization(.never)
-                    ////                       .disableAutocorrection(true)
-                    //                       .border(.secondary)
-                    
-                    //                       Text(userFeedback)
-                    //                           .foregroundColor(userFeedbackFieldIsFocused ? .red : .blue)
-                    //                   }
                     
                     // Version number at bottom
                     Spacer()
