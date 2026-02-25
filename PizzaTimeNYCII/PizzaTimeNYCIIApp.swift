@@ -17,7 +17,7 @@ struct PizzaTimeNYCIIApp: App {
     @StateObject private var isPlaying = MusicState()
     var body: some Scene {
         WindowGroup {
-            FeedbackPage()
+            AddPage()
                 .environmentObject(isPlaying)
         }
     }

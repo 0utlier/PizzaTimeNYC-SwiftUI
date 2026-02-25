@@ -19,9 +19,9 @@ struct FeedbackPage: View {
     //    @FocusState private var userFeedbackFieldIsFocused: Bool = false
     @State private var emailOptional: String = ""
     //    @FocusState private var emailFieldIsFocused: Bool = false
-    init() {
-        UITextView.appearance().backgroundColor = .clear
-    }
+//    init() {
+//        UITextView.appearance().backgroundColor = .clear
+//    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -78,7 +78,7 @@ struct FeedbackPage: View {
                                 .opacity(userFeedback.isEmpty ? 1 : 0)
                                 .padding()
                                 .foregroundColor(.gray)
-//                                .allowsHitTesting(false) // lets click go through
+                                .allowsHitTesting(false) // lets click go through
                         }
                     } // END ZStack
                                         
@@ -96,7 +96,7 @@ struct FeedbackPage: View {
                     .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                     
-                    Button(action: backButton) {
+                    Button(action: submitButton) {
                         Text("SUBMIT")
                             .foregroundColor(.red)
                             .font(.system(size: 20, weight: .bold, design: .default))
@@ -119,6 +119,13 @@ struct FeedbackPage: View {
     }
     func backButton() {
         print("back button pressed")
+    }
+    func submitButton() {
+        if userFeedback.isEmpty {
+            // TODO: pop up warning [Edit / Home Page]
+            print("You didn't say anything?")
+        }
+        print("\(emailOptional.isEmpty ? "User" : "'\(emailOptional)'") gave feedback of type \(feedbackSelected.rawValue.capitalized):\n*\(userFeedback)*")
     }
 }
 #Preview {
