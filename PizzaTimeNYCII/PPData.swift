@@ -41,8 +41,8 @@ struct PizzaPlace: Identifiable {
 
 var myfirstPlace: PizzaPlace!
 var pizzaPlaces: [PizzaPlace] = [
-    PizzaPlace(name: "firstPlace", address: "addressing", rating: 1.0, distance: 1.0),
-    PizzaPlace(name: "secondPlace", address: "addressing", rating: 1.0, distance: 1.0),
-    PizzaPlace(name: "thirdPlace", address: "addressing", rating: 1.0, distance: 1.0),
-    PizzaPlace(name: "fourthPlace", address: "addressing", rating: 1.0, distance: 1.0),
+    PizzaPlace(name: "TWO BROS 8TH ST", address: "8th St NYC", rating: 1.0, distance: 1.0),
+    PizzaPlace(name: "TWO BROS 9TH AVE", address: "9th Ave", rating: 1.0, distance: 1.0),
+    PizzaPlace(name: "99 CENT PIZZA", address: "Ave B", rating: 1.0, distance: 1.0),
+    PizzaPlace(name: "FOURTHPLACE", address: "addressing", rating: 1.0, distance: 1.0),
 ]

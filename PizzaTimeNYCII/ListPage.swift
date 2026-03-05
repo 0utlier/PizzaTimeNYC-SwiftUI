@@ -18,7 +18,7 @@ struct ListPage: View {
             //            let screenHeight = geometry.size.height
             
             ZStack(alignment: .center) {
-                Color.yellow
+                Color.ptnColorYellow
                     .ignoresSafeArea()
                 
                 VStack { // back button, Logo, selection, text box x2, submit
@@ -59,13 +59,13 @@ struct ListPage: View {
                             
                             PPListViewItem(pizzaPlace: PizzaPlace)
 //                                .frame(width: screenWidth)
-                                .listRowBackground(Color.orange.opacity(0.9))
-                                .listRowSeparatorTint(.red)
+                                .listRowBackground(Color.ptnColorYellow)
+                                .listRowSeparatorTint(.purple)
                         }
                         .listStyle(PlainListStyle())
 //                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         //                    .background(Color.blue)
-//                        .colorMultiply(.yellow)
+//                        .colorMultiply(.ptnColorYellow)
 //                        .listRowBackground(Color.red)
 //                                              .padding(.trailing, 5)
 //                                              .padding(.leading, 5)

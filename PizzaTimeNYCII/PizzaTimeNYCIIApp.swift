@@ -10,6 +10,7 @@ import Combine
 
 class MusicState: ObservableObject {
     @Published var isPlaying: Bool = false
+    let myColor = Color("PTNColorRed")
 }
 
 @main

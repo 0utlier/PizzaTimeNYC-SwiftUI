@@ -16,7 +16,7 @@ struct AboutPage: View {
             let screenHeight = geometry.size.height
             
             ZStack(/*.ignoresSafeArea()*/) {
-                Color.yellow
+                Color.ptnColorYellow
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) { // pizza man, Logo, Buttons

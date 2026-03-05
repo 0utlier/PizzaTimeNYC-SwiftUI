@@ -29,7 +29,7 @@ struct FeedbackPage: View {
             let screenHeight = geometry.size.height
             
             ZStack(alignment: .center) {
-                Color.yellow
+                Color.ptnColorYellow
                     .ignoresSafeArea()
                 
                 VStack { // back button, Logo, selection, text box x2, submit

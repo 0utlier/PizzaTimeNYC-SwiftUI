@@ -20,7 +20,7 @@ struct AddPage: View {
                 let screenHeight = geometry.size.height
                 
                 ZStack(alignment: .center) {
-                    Color.yellow
+                    Color.ptnColorYellow
                         .ignoresSafeArea()
                     
                     VStack { // back button, Logo, selection, text box x2, submit
@@ -57,13 +57,13 @@ struct AddPage: View {
                         //                        .font(.largeTitle)
                             .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
                         TextField(text: $placeName, prompt: Text(" PP NAME")) {
-                            Text("Username")
+//                            Text("Username")
                             //                            .background(Color.red)
                         }
                         //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                         //                    .textFieldStyle(.plain)
                         .frame(width: screenWidth / 1.25, height: screenHeight / 20)
-                        .background(Color.orange.opacity(0.4))
+                        .background(Color.ptnColorOrange)
                         .padding()
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
@@ -81,14 +81,14 @@ struct AddPage: View {
                             .ignoresSafeArea()
                             //                        Spacer()
                             TextField(text: $placeAddress, prompt: Text(" PP ADDRESS")) {
-                                Text("Username")
+//                                Text("Username")
                                 //                                .background(Color.red)
                                 
                             }
                             //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                             //                    .textFieldStyle(.plain)
                             .frame(width: screenWidth / 1.25, height: screenHeight / 20)
-                            .background(Color.orange.opacity(0.4))
+                            .background(Color.ptnColorOrange)
                             .padding()
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
