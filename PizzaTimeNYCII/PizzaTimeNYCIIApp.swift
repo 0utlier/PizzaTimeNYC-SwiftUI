@@ -13,13 +13,35 @@ class MusicState: ObservableObject {
     @State private var currentPage = [Int]()
 }
 
+class NavigationManager: ObservableObject {
+    @Published var activePage: PizzaPage?
+    @Published var lastPage: PizzaPage? = nil
+    
+    // trigger refresh
+//    @Published var refreshID = UUID()
+    
+    func goHome() {
+        print("Going home sir...")
+        lastPage = activePage
+        activePage = nil
+//        refreshID = UUID() // trigger view refresh
+    }
+}
+
 @main
 struct PizzaTimeNYCIIApp: App {
-    @StateObject private var isPlaying = MusicState()
+    @StateObject var isPlaying = MusicState()
+    //    @State private var activePage: PizzaPage?
+    @StateObject var nav = NavigationManager()
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(isPlaying)
+            NavigationView {
+                ContentView()
+            }
+            .environmentObject(isPlaying)
+            .environmentObject(nav)
         }
     }
 }

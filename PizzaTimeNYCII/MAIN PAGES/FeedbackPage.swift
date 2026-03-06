@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FeedbackPage: View {
     @EnvironmentObject var musicState: MusicState
+    @EnvironmentObject var nav: NavigationManager
     enum FeedbackType: String, CaseIterable, Identifiable {
         case positive, error, request
         var id: Self { self }
@@ -19,9 +20,9 @@ struct FeedbackPage: View {
     //    @FocusState private var userFeedbackFieldIsFocused: Bool = false
     @State private var emailOptional: String = ""
     //    @FocusState private var emailFieldIsFocused: Bool = false
-//    init() {
-//        UITextView.appearance().backgroundColor = .clear
-//    }
+    //    init() {
+    //        UITextView.appearance().backgroundColor = .clear
+    //    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -63,8 +64,8 @@ struct FeedbackPage: View {
                     .frame(width: screenWidth / 1.25)
                     
                     ZStack(alignment: .topLeading) {
-//                        RoundedRectangle(cornerRadius: 8)
-//                            .fill(Color.orange.opacity(0.5))
+                        //                        RoundedRectangle(cornerRadius: 8)
+                        //                            .fill(Color.orange.opacity(0.5))
                         
                         TextEditor(text: $userFeedback)
                             .frame(width: screenWidth / 1.25, height: screenHeight / 3)
@@ -81,20 +82,20 @@ struct FeedbackPage: View {
                                 .allowsHitTesting(false) // lets click go through
                         }
                     } // END ZStack
-                                        
+                    
                     // Optional email field
                     TextField(text: $emailOptional, prompt: Text("Email (optional)")) {
                         Text("Username")
                             .background(Color.red)
                         
                     }
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .textFieldStyle(.plain)
+                    //                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    //                    .textFieldStyle(.plain)
                     .frame(width: screenWidth / 1.25)
                     .background(Color.orange.opacity(0.4))
                     .padding()
                     .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
+                    .disableAutocorrection(true)
                     
                     Button(action: submitButton) {
                         Text("SUBMIT")
@@ -116,9 +117,12 @@ struct FeedbackPage: View {
                 } // VSTACK END
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     func backButton() {
+        // navigate to last page
         print("back button pressed")
+        nav.activePage = nav.lastPage
     }
     func submitButton() {
         if userFeedback.isEmpty {
@@ -126,9 +130,14 @@ struct FeedbackPage: View {
             print("You didn't say anything?")
         }
         print("\(emailOptional.isEmpty ? "User" : "'\(emailOptional)'") gave feedback of type \(feedbackSelected.rawValue.capitalized):\n*\(userFeedback)*")
+        // TODO: pop up note
+        nav.lastPage = nav.activePage
+        nav.activePage = nil
+
     }
 }
 #Preview {
     FeedbackPage()
         .environmentObject(MusicState())
+        .environmentObject(NavigationManager())
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AboutPage: View {
     @EnvironmentObject var musicState: MusicState
+    @EnvironmentObject var nav: NavigationManager
     
     var body: some View {
         GeometryReader { geometry in
@@ -54,19 +55,19 @@ struct AboutPage: View {
                     //                            let frames = pizzaDancingMan?.images
                     GIFView("KenPizzaMan")
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 160, trailing: 0))
-                                        
+                    
                     VStack {
                         let attributedString = try! AttributedString(
                             markdown: "_DESIGN_ Rachel McHugh"
                         )
                         Text(attributedString)
-//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         Text("ARTWORK Ken Siu")
                         //                            .font(.title3.bold())
-//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         Text("PROGRAMMATION JD Leonard")
                         //                            .font(.title3.bold())
-//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
                     .font(.title3.bold())
                     .padding(EdgeInsets(top: -160, leading: 0, bottom: 0, trailing: 0))
@@ -84,12 +85,16 @@ struct AboutPage: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
     func backButton() {
+        // navigate to last page
         print("back button pressed")
+        nav.activePage = nav.lastPage
     }
 }
 #Preview {
     AboutPage()
         .environmentObject(MusicState())
+        .environmentObject(NavigationManager())
 }
