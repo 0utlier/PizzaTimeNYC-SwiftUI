@@ -10,7 +10,7 @@ import Combine
 
 class MusicState: ObservableObject {
     @Published var isPlaying: Bool = false
-    let myColor = Color("PTNColorRed")
+    @State private var currentPage = [Int]()
 }
 
 @main
@@ -18,7 +18,7 @@ struct PizzaTimeNYCIIApp: App {
     @StateObject private var isPlaying = MusicState()
     var body: some Scene {
         WindowGroup {
-            AddPage()
+            ContentView()
                 .environmentObject(isPlaying)
         }
     }
