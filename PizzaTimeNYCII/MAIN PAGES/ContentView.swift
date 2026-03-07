@@ -11,9 +11,17 @@ import AudioToolbox
 struct ContentView: View {
     @EnvironmentObject var musicState: MusicState
     @EnvironmentObject var nav: NavigationManager
+    @State private var randomNumber = 0 // background color
     @State var movePizza: PizzaPage?
     let movePizzaDuration: Double = 0.5
     
+    let colorBackGround: [Color] = [
+        .ptnColorYellow,
+        .blue, // don't hide buttons that are ptnColorBlue
+        .ptnColorGreen,
+        .ptnColorOrange,
+        .ptnColorRedRating
+    ]
     
     var body: some View {
         NavigationView { // Use NavigationView
@@ -38,9 +46,9 @@ struct ContentView: View {
                 
                 ZStack(alignment: .topTrailing) {
                     // TODO: set background to change when page is reloaded
-                    Color.purple
+                    colorBackGround[randomNumber]
                         .ignoresSafeArea()
-                    
+
                     VStack(spacing: -40) { // pizza man, Logo, Buttons
                         HStack { // volume button
                             Spacer()
@@ -222,10 +230,14 @@ struct ContentView: View {
                         }// END HStack PiBu top 3
                         .padding()
                     } // END VStack PMan Logo Butt
+                } // END ZStack
+                .onDisappear {
+                    movePizza = nil
+                    randomNumber = (randomNumber + 1) % colorBackGround.count
+                    print("left options page \(randomNumber)")
                 }
-                //                .id(nav.refreshID)
-            }
-        } // END View
+            } // END View
+        }
         .navigationBarBackButtonHidden(true)
     }
     // FUNCTIONS for page (maybe move to separate page)

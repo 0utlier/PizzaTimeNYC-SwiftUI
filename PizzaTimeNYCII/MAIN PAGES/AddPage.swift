@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+//import PhotosUI
 
 struct AddPage: View {
     @EnvironmentObject var musicState: MusicState
     @EnvironmentObject var nav: NavigationManager
     @State private var placeName = ""
     @State private var placeAddress = ""
-    @State private var pictureTaken = false
+    // Image variables
+    @State private var image: Image?
+//    @State private var imageIsSubmitted = false
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
     
     var body: some View {
-        //        NavigationView {
         GeometryReader { geometry in
             let screenWidth = geometry.size.width
             let screenHeight = geometry.size.height
@@ -23,7 +27,9 @@ struct AddPage: View {
             ZStack(alignment: .center) {
                 Color.ptnColorYellow
                     .ignoresSafeArea()
-                
+                    .sheet(isPresented: $showingImagePicker) {
+                        ImagePicker(image: $inputImage)
+                    }
                 VStack { // back button, Logo, selection, text box x2, submit
                     HStack(spacing: screenWidth / 5) {
                         Button(action: backButton) {
@@ -34,7 +40,7 @@ struct AddPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: optionsButton) {
+                        Button(action: nav.goHome) { // TODO: does the info retain?
                             Image("MCQMapOPTIONS")
                                 .resizable()
                                 .scaledToFit()
@@ -81,29 +87,28 @@ struct AddPage: View {
                         .padding(EdgeInsets(top: 0, leading: -30, bottom: 0, trailing: 0))
                         .ignoresSafeArea()
                         //                        Spacer()
-                        TextField(text: $placeAddress, prompt: Text(" PP ADDRESS")) {
-                            //                                Text("Username")
-                            //                                .background(Color.red)
-                            
-                        }
-                        //                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                        //                    .textFieldStyle(.plain)
-                        .frame(width: screenWidth / 1.25, height: screenHeight / 20)
-                        .background(Color.ptnColorOrange)
-                        .padding()
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
+                        TextField(text: $placeAddress, prompt: Text(" PP ADDRESS")) {}
+                            .frame(width: screenWidth / 1.25, height: screenHeight / 20)
+                            .background(Color.ptnColorOrange)
+                            .padding()
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
                     }
                     
                     Text("TAKE A PICTURE")
                     
                     Button(action: cameraButton) {
-                        Image(pictureTaken ? "pizzaCamera" : "pizzaCamera2")
+                        image?
                             .resizable()
                             .scaledToFit()
                             .frame(width: screenWidth / 2.25)
+                        if image == nil {
+                            Image("pizzaCamera2")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: screenWidth / 2.25)
+                        }
                     }
-                    
                     Button(action: addButton) {
                         Image("MCQaddADD")
                             .resizable()
@@ -116,8 +121,9 @@ struct AddPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onChange(of: inputImage) { _ in loadImage() }
     }
-    //    }
+    
     // FUNCTIONS for page (maybe move to separate page)
     func soundButton() {
         musicState.isPlaying.toggle()
@@ -127,8 +133,6 @@ struct AddPage: View {
         // navigate to options
         print("back to all of the options!")
         nav.goHome()
-//        nav.lastPage = nav.activePage
-//        nav.activePage = nil
     }
     func backButton() {
         // navigate to last page
@@ -136,9 +140,10 @@ struct AddPage: View {
         nav.activePage = nav.lastPage
     }
     func cameraButton() {
+        showingImagePicker = true
         // TODO: open camera to take picture [change bool if picture is taken]
-        pictureTaken.toggle()
-        print("camera button pressed - \(pictureTaken)")
+//        imageIsSubmitted.toggle()
+        print("camera button pressed - camera or picker?")
     }
     func addButton() {
         if placeName.isEmpty {
@@ -149,7 +154,7 @@ struct AddPage: View {
             // TODO: warn user
             print("Please enter an address!")
         }
-        if !pictureTaken {
+        if image == nil {
             // TODO: warn user
             print("Is there a picture?")
         }
@@ -159,6 +164,10 @@ struct AddPage: View {
         // TODO: find location address
         placeAddress = "ADDRESS FOUND!"
         print("found the address: \(placeAddress)")
+    }
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 

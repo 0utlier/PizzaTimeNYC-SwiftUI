@@ -10,7 +10,7 @@ import Combine
 
 class MusicState: ObservableObject {
     @Published var isPlaying: Bool = false
-    @State private var currentPage = [Int]()
+//    @State private var currentPage = [Int]()
 }
 
 class NavigationManager: ObservableObject {
