@@ -54,14 +54,17 @@ struct FeedbackPage: View {
                                 trailing: screenWidth / 10
                             )
                         )
-                    Picker("Type", selection: $feedbackSelected) {
-                        ForEach(FeedbackType.allCases) { feedBack in
-                            Text(feedBack.rawValue.capitalized)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .accentColor(.red)
-                    .frame(width: screenWidth / 1.25)
+                    CustomSegmentedPicker(selection: $feedbackSelected, cases: Array(FeedbackType.allCases))
+                        .frame(width: screenWidth / 1.25)
+//                    Picker("Type", selection: $feedbackSelected) {
+//                        ForEach(FeedbackType.allCases) { feedBack in
+//                            Text(feedBack.rawValue.capitalized)
+//
+//                        }
+//                    }
+//                    .pickerStyle(SegmentedPickerStyle())
+////                    .accentColor(.green)
+//                    .frame(width: screenWidth / 1.25)
                     
                     ZStack(alignment: .topLeading) {
                         //                        RoundedRectangle(cornerRadius: 8)
