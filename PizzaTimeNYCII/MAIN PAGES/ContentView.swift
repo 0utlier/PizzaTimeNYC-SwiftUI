@@ -68,7 +68,7 @@ struct ContentView: View {
                             //                            let frames = pizzaDancingMan?.images
                             //                    GIFView("KenPizzaMan")
                             
-                            Image("PTM_Title")
+                            Image("MCQpizzaTimeLOGO")
                                 .resizable()
                                 .scaledToFit()
                                 .padding(

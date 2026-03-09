@@ -34,7 +34,7 @@ struct AboutPage: View {
                     
                     //                    ZStack {
                     
-                    Image("PTM_Title")
+                    Image("MCQpizzaTimeLOGO")
                         .resizable()
                         .scaledToFit()
                         .padding(

@@ -42,7 +42,7 @@ struct FeedbackPage: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
-                    Image("PTM_Title")
+                    Image("MCQpizzaTimeLOGO")
                         .resizable()
                         .scaledToFit()
                         .frame(width: screenWidth  / 2)
