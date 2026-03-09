@@ -15,9 +15,11 @@ struct AddPage: View {
     @State private var placeAddress = ""
     // Image variables
     @State private var image: Image?
-//    @State private var imageIsSubmitted = false
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
+    // Camera variables
+    @StateObject var camera = CameraManager()
+    @State private var showCamera = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -30,6 +32,19 @@ struct AddPage: View {
                     .sheet(isPresented: $showingImagePicker) {
                         ImagePicker(image: $inputImage)
                     }
+                if showCamera {
+                    ZStack(alignment: .topTrailing) {
+                        
+                        CameraPreview(session: camera.session)
+                            .ignoresSafeArea()
+                        
+                        Button("Close") {
+                            showCamera = false
+                        }
+                        .padding()
+                    }
+                }
+                
                 VStack { // back button, Logo, selection, text box x2, submit
                     HStack(spacing: screenWidth / 5) {
                         Button(action: backButton) {
@@ -96,6 +111,19 @@ struct AddPage: View {
                     }
                     
                     Text("TAKE A PICTURE")
+                    //                    Button("Open Camera") {
+                    //                        print("opening camera")
+                    //                        showCamera = true
+                    //                        camera.start()
+                    //                    }
+                    Button("Open Camera") {
+                        showCamera = true
+                    }
+                    .fullScreenCover(isPresented: $showCamera) {
+                        CameraView { capturedImage in
+                            image = Image(uiImage: capturedImage) }
+                        }
+                    
                     
                     Button(action: cameraButton) {
                         image?
@@ -142,7 +170,7 @@ struct AddPage: View {
     func cameraButton() {
         showingImagePicker = true
         // TODO: open camera to take picture [change bool if picture is taken]
-//        imageIsSubmitted.toggle()
+        //        imageIsSubmitted.toggle()
         print("camera button pressed - camera or picker?")
     }
     func addButton() {
@@ -170,6 +198,29 @@ struct AddPage: View {
         image = Image(uiImage: inputImage)
     }
 }
+//
+//struct CameraView: View {
+//
+//    @StateObject var camera = CameraManager()
+//    @Environment(\.dismiss) var dismiss
+//
+//    var body: some View {
+//
+//        ZStack(alignment: .topTrailing) {
+//
+//            CameraPreview(session: camera.session)
+//                .ignoresSafeArea()
+//                .onAppear {
+//                    camera.start()
+//                }
+//
+//            Button("Close") {
+//                dismiss()
+//            }
+//            .padding()
+//        }
+//    }
+//}
 
 #Preview {
     AddPage()

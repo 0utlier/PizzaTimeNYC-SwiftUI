@@ -46,6 +46,9 @@ struct AboutPage: View {
                             )
                         )
                     Text("BROUGHT TO YOU BY OUTLIER")
+                        .foregroundColor(Color.ptnColorRed)
+                        .font(Font.custom("Rubik-Black", size: 25))
+                    
                         .font(.title2.bold())
                     
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -53,34 +56,44 @@ struct AboutPage: View {
                     // TODO: add in dancing GIF
                     //                                                let pizzaDancingMan = UIImage.animatedImageNamed("KenPizzaMan", duration: 5)
                     //                            let frames = pizzaDancingMan?.images
-                    GIFView("KenPizzaMan")
+                    GIFView(name: "dancingPizzaAlpha")
+                    //                        .frame(width: 10, height: 10)
+                                            .aspectRatio(contentMode: .fill)
+                    //                        .frame(width: screenWidth / 6, height: screenHeight / 6)
+                    //                        .scaledToFit()
+                    //                        .padding()
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 160, trailing: 0))
                     
                     VStack {
-                        let attributedString = try! AttributedString(
-                            markdown: "_DESIGN_ Rachel McHugh"
-                        )
-                        Text(attributedString)
-                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        Text("ARTWORK Ken Siu")
-                        //                            .font(.title3.bold())
-                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        Text("PROGRAMMATION JD Leonard")
-                        //                            .font(.title3.bold())
-                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    }
-                    .font(.title3.bold())
+                        HStack {
+                            Text("DESIGN")
+                                .foregroundColor(Color.ptnColorRed)
+                                .font(Font.custom("Rubik-Black", size: 25))
+                            
+                            Text("Rachel McHugh")
+                                .foregroundColor(Color.ptnColorBlue)
+                                .font(Font.custom("Rubik-Light", size: 25))
+                        }
+                        HStack {
+                            Text("ARTWORK")
+                                .foregroundColor(Color.ptnColorRed)
+                                .font(Font.custom("Rubik-Black", size: 25))
+                            
+                            Text("Ken Siu")
+                                .foregroundColor(Color.ptnColorBlue)
+                                .font(Font.custom("Rubik-Light", size: 25))
+                        }
+                        HStack {
+                            Text("PROGRAMMATION")
+                                .foregroundColor(Color.ptnColorRed)
+                                .font(Font.custom("Rubik-Black", size: 25))
+                            
+                            Text("JD Leonard")
+                                .foregroundColor(Color.ptnColorBlue)
+                                .font(Font.custom("Rubik-Light", size: 25))
+                        }
+                    } // END VSTACK: names
                     .padding(EdgeInsets(top: -160, leading: 0, bottom: 0, trailing: 0))
-                    // END VSTACK: names
-                    //                        Image(musicState.isPlaying ? "sadPizzaWalpha" : "sadPizzaWalpha")
-                    //                            .resizable()
-                    //                            .scaledToFit()
-                    //                            .frame(width: screenWidth / 2)
-                    //                            .padding(
-                    //                                EdgeInsets(top: -150, leading: 0, bottom: 100, trailing: 0)
-                    
-                    
-                    
                     
                 }
             }

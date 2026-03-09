@@ -79,13 +79,20 @@ struct ContentView: View {
                                         trailing: screenWidth / 10
                                     )
                                 )
-                            Image(musicState.isPlaying ? "sadPizzaWalpha" : "sadPizzaWalpha")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: screenWidth / 2)
-                                .padding(
-                                    EdgeInsets(top: -150, leading: 0, bottom: 100, trailing: 0)
-                                )
+                            if musicState.isPlaying {
+                                GIFView(name: "dancingPizzaAlpha")
+                                    .frame(width: screenWidth / 2)
+                                    .padding(EdgeInsets(top: -183, leading: 0, bottom: 0, trailing: 0))
+                            }
+                            else {
+                                Image("sadPizzaWalpha")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: screenWidth / 2)
+                                    .padding(
+                                        EdgeInsets(top: -150, leading: 0, bottom: 100, trailing: 0)
+                                    )
+                            }
                         }
                         
                         

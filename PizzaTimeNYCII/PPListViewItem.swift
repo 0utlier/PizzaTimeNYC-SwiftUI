@@ -18,7 +18,7 @@ struct PPListViewItem: View {
             Text(pizzaPlace.name)
                 .fontWeight(.bold)
                 .foregroundColor(Color.ptnColorRed)
-                .font(.title2.bold())
+                .font(Font.custom("Rubik-Black", size: 25))
                 .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
                 VStack {
@@ -43,7 +43,7 @@ struct PPListViewItem: View {
                 //                Spacer()
             }
         }
-        .font(Font.custom("Rubik-Black", size: 25))
+        .font(Font.custom("Rubik-Light", size: 25))
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
         
         
