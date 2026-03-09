@@ -22,7 +22,7 @@ struct GIFView: View {
     init(name: String) {
         var images: [UIImage] = []
         var durations: [Double] = []
-
+        print("Loading GIF for Orientation: \(UIDevice.current.orientation)")
         if let url = Bundle.main.url(forResource: name, withExtension: "gif"),
            let data = try? Data(contentsOf: url),
            let source = CGImageSourceCreateWithData(data as CFData, nil) {

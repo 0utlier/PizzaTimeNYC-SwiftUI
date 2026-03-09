@@ -53,10 +53,7 @@ struct AboutPage: View {
                     
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
-                    // TODO: add in dancing GIF
-                    //                                                let pizzaDancingMan = UIImage.animatedImageNamed("KenPizzaMan", duration: 5)
-                    //                            let frames = pizzaDancingMan?.images
-                    GIFView(name: "dancingPizzaAlpha")
+                    GIFView(name: "DancingPizzaAlpha")
                     //                        .frame(width: 10, height: 10)
                                             .aspectRatio(contentMode: .fill)
                     //                        .frame(width: screenWidth / 6, height: screenHeight / 6)

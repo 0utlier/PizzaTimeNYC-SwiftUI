@@ -10,21 +10,51 @@ import Combine
 
 class MusicState: ObservableObject {
     @Published var isPlaying: Bool = false
-//    @State private var currentPage = [Int]()
+    //    @State private var currentPage = [Int]()
 }
 
 class NavigationManager: ObservableObject {
     @Published var activePage: PizzaPage?
     @Published var lastPage: PizzaPage? = nil
     
-    // trigger refresh
-//    @Published var refreshID = UUID()
-    
     func goHome() {
         print("Going home sir...")
         lastPage = activePage
         activePage = nil
-//        refreshID = UUID() // trigger view refresh
+    }
+}
+
+class OrientationObserver: ObservableObject {
+    @Published var isLandscape: Bool = false
+    @Published var isFaceDown: Bool = false
+    @Published var landscapeAngle: Double = 90
+    
+    init() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(orientationChanged),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+    }
+    @objc private func orientationChanged() {
+        let orientation = UIDevice.current.orientation
+        isLandscape = orientation == .landscapeLeft || orientation == .landscapeRight
+        isFaceDown = orientation == .faceDown
+        
+        if orientation == .landscapeLeft {
+            landscapeAngle = 90
+        } else if orientation == .landscapeRight {
+            landscapeAngle = -90
+        }
+        
+        print("islanscape: \(isLandscape) - rotate: \(landscapeAngle)")
+        print("isfacedown: \(isFaceDown)")
+    }
+    
+    deinit {
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
     }
 }
 
@@ -33,15 +63,29 @@ struct PizzaTimeNYCIIApp: App {
     @StateObject var isPlaying = MusicState()
     //    @State private var activePage: PizzaPage?
     @StateObject var nav = NavigationManager()
+    @StateObject private var orientationObserver = OrientationObserver()
     
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
+                    .overlay {
+                        if orientationObserver.isLandscape {
+                            LandscapeOverlayView()
+                                .environmentObject(orientationObserver)
+                        }
+                    }
             }
+            .preferredColorScheme(.light) // don't allow dark mode to change any colors
+
             .environmentObject(isPlaying)
             .environmentObject(nav)
+            .onChange(of: orientationObserver.isFaceDown) { faceDown in
+                if faceDown {
+                    isPlaying.isPlaying.toggle()
+                }
+            }
         }
     }
 }

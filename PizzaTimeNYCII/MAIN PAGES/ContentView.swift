@@ -62,12 +62,7 @@ struct ContentView: View {
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                         } // END HStack
                         
-                        ZStack {
-                            // TODO: add in dancing GIF
-                            //                            let pizzaDancingMan = UIImage.animatedImageNamed("KenPizzaMan", duration: 5)
-                            //                            let frames = pizzaDancingMan?.images
-                            //                    GIFView("KenPizzaMan")
-                            
+                        ZStack {                            
                             Image("MCQpizzaTimeLOGO")
                                 .resizable()
                                 .scaledToFit()
@@ -80,7 +75,7 @@ struct ContentView: View {
                                     )
                                 )
                             if musicState.isPlaying {
-                                GIFView(name: "dancingPizzaAlpha")
+                                GIFView(name: "DancingPizzaAlpha")
                                     .frame(width: screenWidth / 2)
                                     .padding(EdgeInsets(top: -183, leading: 0, bottom: 0, trailing: 0))
                             }
