@@ -75,13 +75,13 @@ struct AddPage: View {
                     } // END HStack buttons
                     
                     Text("NAME OF PIZZA PLACE")
-                        .multilineTextAlignment(.trailing)
-                    //                        .font(.largeTitle)
-                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
-                    TextField(text: $placeName, prompt: Text(" PP NAME")) {
-                        //                            Text("Username")
-                        //                            .background(Color.red)
-                    }
+                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+                        .foregroundColor(Color.ptnColorRed)
+                        .font(Font.custom("Rubik-Bold", size: 25))
+                        .multilineTextAlignment(.leading)
+                        .padding(EdgeInsets(top: 20, leading: 0, bottom: -20, trailing: 0))
+                    
+                    TextField(text: $placeName, prompt: Text(" PP NAME")) {}
                     //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     //                    .textFieldStyle(.plain)
                     .frame(width: screenWidth / 1.25, height: screenHeight / 20)
@@ -91,7 +91,11 @@ struct AddPage: View {
                     .disableAutocorrection(true)
                     
                     Text("ADDRESS")
-                    
+                        .foregroundColor(Color.ptnColorRed)
+                        .font(Font.custom("Rubik-Bold", size: 25))
+                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+                        .padding(EdgeInsets(top: 20, leading: 0, bottom: -20, trailing: 0))
+
                     ZStack(alignment: .leading) {
                         Button(action: findLocationAddress) {
                             Image("MCQMapLOCATION")
@@ -110,19 +114,18 @@ struct AddPage: View {
                             .disableAutocorrection(true)
                     }
                     
-                    Text("TAKE A PICTURE")
-                    //                    Button("Open Camera") {
-                    //                        print("opening camera")
-                    //                        showCamera = true
-                    //                        camera.start()
-                    //                    }
+                    Text("ADD A PICTURE")
+                        .foregroundColor(Color.ptnColorRed)
+                        .font(Font.custom("Rubik-Bold", size: 25))
+                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+
                     Button("Open Camera") {
                         showCamera = true
                     }
                     .fullScreenCover(isPresented: $showCamera) {
                         CameraView { capturedImage in
                             image = Image(uiImage: capturedImage) }
-                        }
+                    }
                     
                     
                     Button(action: cameraButton) {
@@ -198,29 +201,6 @@ struct AddPage: View {
         image = Image(uiImage: inputImage)
     }
 }
-//
-//struct CameraView: View {
-//
-//    @StateObject var camera = CameraManager()
-//    @Environment(\.dismiss) var dismiss
-//
-//    var body: some View {
-//
-//        ZStack(alignment: .topTrailing) {
-//
-//            CameraPreview(session: camera.session)
-//                .ignoresSafeArea()
-//                .onAppear {
-//                    camera.start()
-//                }
-//
-//            Button("Close") {
-//                dismiss()
-//            }
-//            .padding()
-//        }
-//    }
-//}
 
 #Preview {
     AddPage()

@@ -56,15 +56,15 @@ struct FeedbackPage: View {
                         )
                     CustomSegmentedPicker(selection: $feedbackSelected, cases: Array(FeedbackType.allCases))
                         .frame(width: screenWidth / 1.25)
-//                    Picker("Type", selection: $feedbackSelected) {
-//                        ForEach(FeedbackType.allCases) { feedBack in
-//                            Text(feedBack.rawValue.capitalized)
-//
-//                        }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-////                    .accentColor(.green)
-//                    .frame(width: screenWidth / 1.25)
+                    //                    Picker("Type", selection: $feedbackSelected) {
+                    //                        ForEach(FeedbackType.allCases) { feedBack in
+                    //                            Text(feedBack.rawValue.capitalized)
+                    //
+                    //                        }
+                    //                    }
+                    //                    .pickerStyle(SegmentedPickerStyle())
+                    ////                    .accentColor(.green)
+                    //                    .frame(width: screenWidth / 1.25)
                     
                     ZStack(alignment: .topLeading) {
                         //                        RoundedRectangle(cornerRadius: 8)
@@ -72,38 +72,40 @@ struct FeedbackPage: View {
                         
                         TextEditor(text: $userFeedback)
                             .frame(width: screenWidth / 1.25, height: screenHeight / 3)
-                            .colorMultiply(.orange.opacity(0.4))
+                            .colorMultiply(.ptnColorOrange)
                             .padding()
                         
                         if userFeedback.isEmpty {
                             Text("Send constructive and productive feedback!")
-                                .frame(width: screenWidth / 1.25, height: screenHeight / 3)
-                                .foregroundStyle(.gray)
+                                .foregroundColor(.ptnColorRed)
+                                .font(Font.custom("Rubik", size: 20))
+                                .frame(width: screenWidth / 1.25, height: screenHeight / 3, alignment: .top)
                                 .opacity(userFeedback.isEmpty ? 1 : 0)
-                                .padding()
-                                .foregroundColor(.gray)
+                                .padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
                                 .allowsHitTesting(false) // lets click go through
                         }
                     } // END ZStack
                     
                     // Optional email field
-                    TextField(text: $emailOptional, prompt: Text("Email (optional)")) {
-                        Text("Username")
-                            .background(Color.red)
-                        
-                    }
+                    TextField(text: $emailOptional, prompt: Text(" Email (optional)")
+                        .foregroundColor(.ptnColorRed)
+                        .font(Font.custom("Rubik", size: 20))) {
+                            Text("Username")
+                                .background(Color.red)
+                            
+                        }
                     //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     //                    .textFieldStyle(.plain)
-                    .frame(width: screenWidth / 1.25)
-                    .background(Color.orange.opacity(0.4))
-                    .padding()
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
+                        .frame(width: screenWidth / 1.25)
+                        .background(.ptnColorOrange)
+//                        .padding()
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                     Button(action: submitButton) {
                         Text("SUBMIT")
-                            .foregroundColor(.red)
-                            .font(.system(size: 20, weight: .bold, design: .default))
+                            .foregroundColor(Color.ptnColorRed)
+                            .font(Font.custom("Rubik-Bold", size: 20))
                     }
                     
                     
@@ -112,8 +114,8 @@ struct FeedbackPage: View {
                     HStack(alignment: .bottom) {
                         Spacer()
                         Text("Version 1.0")
-                            .foregroundColor(.red)
-                        //                    .font(.caption)
+                            .foregroundColor(Color.ptnColorRed)
+                            .font(Font.custom("Rubik-Light", size: 20))
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
                         //                            .ignoresSafeArea()
                     }
@@ -136,7 +138,7 @@ struct FeedbackPage: View {
         // TODO: pop up note
         nav.lastPage = nav.activePage
         nav.activePage = nil
-
+        
     }
 }
 #Preview {
