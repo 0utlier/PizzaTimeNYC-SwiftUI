@@ -81,11 +81,9 @@ extension PizzaPage {
         case .list:
             ListPage()
         case .map:
-            //            MapPage()
-            ListPage()
+            MapPage()
         case .closest:
-            //            ClosestPage()
-            ListPage()
+            MapPage() // TODO: based on current location. immediate directions
         case .about:
             AboutPage()
         case .add:

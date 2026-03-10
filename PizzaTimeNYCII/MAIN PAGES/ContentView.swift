@@ -28,12 +28,6 @@ struct ContentView: View {
             GeometryReader { geometry in
                 let screenWidth = geometry.size.width
                 let screenHeight = geometry.size.height
-                //                NavigationLink(destination: ListPage(), tag: .list, selection: $nav.activePage) {EmptyView()}
-                //                NavigationLink(destination: ListPage(), tag: .map, selection: $nav.activePage) {EmptyView()}
-                //                NavigationLink(destination: ListPage(), tag: .closest, selection: $nav.activePage) {EmptyView()}
-                //                NavigationLink(destination: AboutPage(), tag: .about, selection: $nav.activePage) {EmptyView()}
-                //                NavigationLink(destination: AddPage(), tag: .add, selection: $nav.activePage) {EmptyView()}
-                //                NavigationLink(destination: FeedbackPage(), tag: .feedback, selection: $nav.activePage) {EmptyView()}
                 NavigationLink(
                     destination: nav.activePage?.destinationView,
                     isActive: Binding(

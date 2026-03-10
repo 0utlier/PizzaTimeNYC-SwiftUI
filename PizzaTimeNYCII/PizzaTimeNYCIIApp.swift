@@ -60,10 +60,11 @@ class OrientationObserver: ObservableObject {
 
 @main
 struct PizzaTimeNYCIIApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var orientationObserver = OrientationObserver()
     @StateObject var isPlaying = MusicState()
     //    @State private var activePage: PizzaPage?
     @StateObject var nav = NavigationManager()
-    @StateObject private var orientationObserver = OrientationObserver()
     
     
     var body: some Scene {

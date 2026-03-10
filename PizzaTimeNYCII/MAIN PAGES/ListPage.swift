@@ -112,10 +112,9 @@ struct ListPage: View {
         print("Music is \(musicState.isPlaying ? "on" : "off")")
     }
     func mapButton() {
-        // TODO: navigate to map page
         print("back to the map!")
         nav.lastPage = nav.activePage
-        nav.activePage = .list
+        nav.activePage = .map
     }
     func listButton() {
         // navigate to list page
