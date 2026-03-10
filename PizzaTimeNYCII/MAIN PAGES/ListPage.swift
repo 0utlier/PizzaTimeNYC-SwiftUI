@@ -22,7 +22,7 @@ struct ListPage: View {
                 Color.ptnColorYellow
                     .ignoresSafeArea()
                 
-                VStack { // back button, Logo, selection, text box x2, submit
+                VStack { // back button, Logo, selection
                     HStack(spacing: screenWidth / 5) {
                         Button(action: searchButton) {
                             Image("MCQMapSEARCH")
@@ -32,7 +32,7 @@ struct ListPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: optionsButton) {
+                        Button(action: nav.goHome) {
                             Image("MCQMapOPTIONS")
                                 .resizable()
                                 .scaledToFit()
@@ -48,39 +48,29 @@ struct ListPage: View {
                             .frame(width: screenWidth / 6)
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
-                        
                     } // END HStack buttons
                     
-                    
-                    ZStack(alignment: .leading) {
-                        Color.green
-                        //                            .ignoresSafeArea()
+                    ZStack(alignment: .leading) { // List
+                        Color.green // behind the list
                         
                         List(pizzaPlaces, id: \.id) { PizzaPlace in
                             
                             PPListViewItem(pizzaPlace: PizzaPlace)
-                            //                                .frame(width: screenWidth)
                                 .listRowBackground(Color.ptnColorYellow)
                                 .listRowSeparatorTint(.purple)
                         }
                         .listStyle(PlainListStyle())
-                        //                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        //                    .background(Color.blue)
                         //                        .colorMultiply(.ptnColorYellow)
-                        //                        .listRowBackground(Color.red)
-                        //                                              .padding(.trailing, 5)
-                        //                                              .padding(.leading, 5)
-                        //                                              .padding(.top, 2)
-                        //                                              .padding(.bottom, 2)
                         
                         .frame(width: screenWidth, alignment: .leading)
+                        // TODO: refresh with pizza dollar
                         //                    .refreshable {
                         //                                 await listButton()
                         //                             }
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                    //                    Spacer()
-                    HStack/*(alignment: .bottom)*/ {
+                    
+                    HStack/*(alignment: .bottom)*/ { // Buttons
                         Button(action: mapButton) {
                             Image("MCQTabBarMAP")
                                 .resizable()
@@ -88,19 +78,17 @@ struct ListPage: View {
                                 .frame(width: screenWidth / 2)
                         }
                         .padding(EdgeInsets(top: -20, leading: 0, bottom: -200, trailing: -8))
+                        
                         Button(action: listButton) {
                             Image("MCQTabBarLIST")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: screenWidth / 2)
                         }
-                        
                         .padding(EdgeInsets(top: -20, leading: 0, bottom: -200, trailing: 0))
                     }// END HStack buttons
-                    //                    .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
                 } // END VStack page
-            }
-            
+            } // END ZStack all
         }
         .navigationBarBackButtonHidden(true)
     }
@@ -121,14 +109,6 @@ struct ListPage: View {
         print("back to the list!")
         nav.lastPage = nav.activePage
         nav.activePage = .list
-    }
-    func optionsButton() {
-        // return to options page
-        print("back to the options!")
-//        nav.lastPage = nav.activePage
-//        nav.activePage = nil
-        nav.goHome()
-
     }
     func searchButton() {
         // TODO: populate a search view

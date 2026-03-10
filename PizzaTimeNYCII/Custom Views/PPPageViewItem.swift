@@ -16,14 +16,15 @@ struct PPPageViewItem: View {
         ZStack(alignment: .topTrailing) {
             //            Color.purple
             //                .ignoresSafeArea()
-            
             VStack {
                 Text(pizzaPlace.name)
                     .font(.largeTitle)
                     .foregroundColor(Color.ptnColorRed)
+                
                 HStack(alignment: .top) {
-                    Text("\(pizzaPlace.address)\nNY NY ZIP\nDistance mi away")
+                    Text("\(pizzaPlace.street)\nNY NY ZIP\nDistance mi away")
                         .foregroundColor(Color.ptnColorBlue)
+                    
                     Spacer()
                     VStack {
                         Button(action:ratePos) {
@@ -31,20 +32,17 @@ struct PPPageViewItem: View {
                         }
                         Text("100%")
                             .foregroundColor(Color.ptnColorGreen)
-
                     }
+                    
                     VStack {
                         Button(action:rateNeg) {
                             Image("MCQSliceRed")
                         }
                         Text("0%")
                             .foregroundColor(Color.ptnColorRedRating)
-
                     }
                 }
                 .padding()
-//                .font(Font.system(size: 18, weight: .bold, design: .default))
-                //                Spacer()
             }
         }
     }

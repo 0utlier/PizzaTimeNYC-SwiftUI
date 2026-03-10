@@ -34,7 +34,7 @@ struct FeedbackPage: View {
                     .ignoresSafeArea()
                 
                 VStack { // back button, Logo, selection, text box x2, submit
-                    Button(action: backButton) {
+                    Button(action: nav.backButton) {
                         Image("MCQppiBACK")
                             .resizable()
                             .scaledToFit()
@@ -123,11 +123,6 @@ struct FeedbackPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-    }
-    func backButton() {
-        // navigate to last page
-        print("back button pressed")
-        nav.activePage = nav.lastPage
     }
     func submitButton() {
         if userFeedback.isEmpty {

@@ -21,18 +21,14 @@ struct AboutPage: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 0) { // pizza man, Logo, Buttons
-                    //                    HStack { // volume button
                     Spacer()
-                    Button(action: backButton) {
+                    Button(action: nav.backButton) {
                         Image("MCQppiBACK")
                             .resizable()
                             .scaledToFit()
                             .frame(width: screenWidth / 6)
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    //                    } // END HStack
-                    
-                    //                    ZStack {
                     
                     Image("MCQpizzaTimeLOGO")
                         .resizable()
@@ -54,11 +50,7 @@ struct AboutPage: View {
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     GIFView(name: "DancingPizzaAlpha")
-                    //                        .frame(width: 10, height: 10)
-                                            .aspectRatio(contentMode: .fill)
-                    //                        .frame(width: screenWidth / 6, height: screenHeight / 6)
-                    //                        .scaledToFit()
-                    //                        .padding()
+                        .aspectRatio(contentMode: .fill)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 160, trailing: 0))
                     
                     VStack {
@@ -91,16 +83,10 @@ struct AboutPage: View {
                         }
                     } // END VSTACK: names
                     .padding(EdgeInsets(top: -160, leading: 0, bottom: 0, trailing: 0))
-                    
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
-    }
-    func backButton() {
-        // navigate to last page
-        print("back button pressed")
-        nav.activePage = nav.lastPage
+        .navigationBarBackButtonHidden(true) // Hide built in Navigation button
     }
 }
 #Preview {

@@ -26,7 +26,7 @@ struct PPPage: View {
                 
                 VStack { // back button, Logo, selection, text box x2, submit
                     HStack(spacing: screenWidth / 5) {
-                        Button(action: backButton) {
+                        Button(action: nav.backButton) {
                             Image("MCQppiBACK")
                                 .resizable()
                                 .scaledToFit()
@@ -91,11 +91,6 @@ struct PPPage: View {
         print("back to the list!")
         nav.lastPage = nav.activePage
         nav.activePage = .list
-    }
-    func backButton() {
-        // navigate to last page
-        print("back button pressed")
-        nav.activePage = nav.lastPage
     }
     func goButton() {
         // TODO: send to map page with current pizza place

@@ -22,6 +22,12 @@ class NavigationManager: ObservableObject {
         lastPage = activePage
         activePage = nil
     }
+    func backButton() {
+        // navigate to last page
+        print("back button pressed")
+        activePage = lastPage
+    }
+
 }
 
 class OrientationObserver: ObservableObject {

@@ -34,9 +34,7 @@ struct CustomSegmentedPicker<T: CaseIterable & Identifiable & RawRepresentable>:
                     }
             }
         }
-//        .background(Color.red)
         .clipShape(RoundedRectangle(cornerRadius: 60))
-//        .frame(width: screenWidth / 1.25)
     }
 }
 

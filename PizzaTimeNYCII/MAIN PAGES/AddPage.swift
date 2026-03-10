@@ -47,7 +47,7 @@ struct AddPage: View {
                 
                 VStack { // back button, Logo, selection, text box x2, submit
                     HStack(spacing: screenWidth / 5) {
-                        Button(action: backButton) {
+                        Button(action: nav.backButton) {
                             Image("MCQppiBACK")
                                 .resizable()
                                 .scaledToFit()
@@ -164,11 +164,6 @@ struct AddPage: View {
         // navigate to options
         print("back to all of the options!")
         nav.goHome()
-    }
-    func backButton() {
-        // navigate to last page
-        print("back button pressed")
-        nav.activePage = nav.lastPage
     }
     func cameraButton() {
         showingImagePicker = true
