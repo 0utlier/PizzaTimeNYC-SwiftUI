@@ -11,6 +11,12 @@ import Combine
 class MusicState: ObservableObject {
     @Published var isPlaying: Bool = false
     //    @State private var currentPage = [Int]()
+    
+    func soundButton() {
+        isPlaying.toggle()
+        print("Music is \(isPlaying ? "on" : "off")")
+    }
+    
 }
 
 class NavigationManager: ObservableObject {
@@ -27,7 +33,25 @@ class NavigationManager: ObservableObject {
         print("back button pressed")
         activePage = lastPage
     }
-
+    func mapButton() {
+        print("back to the map!")
+        lastPage = activePage
+        activePage = .map
+    }
+    func listButton() {
+        // navigate to list page
+        print("back to the list!")
+        lastPage = activePage
+        activePage = .list
+    }
+    func directionsButton() { // can this take a parameter?
+        // TODO: send to map page with current pizza place
+        lastPage = activePage
+        activePage = .map
+        print("Open the map for THIS pizzaPlace, with directions")
+    }
+    
+    
 }
 
 class OrientationObserver: ObservableObject {
@@ -85,7 +109,7 @@ struct PizzaTimeNYCIIApp: App {
                     }
             }
             .preferredColorScheme(.light) // don't allow dark mode to change any colors
-
+            
             .environmentObject(isPlaying)
             .environmentObject(nav)
             .onChange(of: orientationObserver.isFaceDown) { faceDown in

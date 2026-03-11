@@ -23,10 +23,10 @@ struct PizzaPlace: Identifiable {
     //    var image: String
     
     //location of PizzaPlace
-//    var address: String
-        var street: String
-        var city: String
-        var zip: Int
+    //    var address: String
+    var street: String
+    var city: String
+    var zip: Int // displaying as 10,009
     var coordinate: CLLocationCoordinate2D
     var distance: Double
     

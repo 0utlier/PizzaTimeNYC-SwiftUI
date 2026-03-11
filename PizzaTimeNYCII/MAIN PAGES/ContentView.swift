@@ -42,11 +42,11 @@ struct ContentView: View {
                     // TODO: set background to change when page is reloaded
                     colorBackGround[randomNumber]
                         .ignoresSafeArea()
-
+                    
                     VStack(spacing: -40) { // pizza man, Logo, Buttons
                         HStack { // volume button
                             Spacer()
-                            Button(action: soundButton) {
+                            Button(action: musicState.soundButton) {
                                 Image(
                                     musicState.isPlaying ? "MCQMapSOUND" : "MCQMapSOUNDNOT")
                                 .resizable()
@@ -56,7 +56,7 @@ struct ContentView: View {
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                         } // END HStack
                         
-                        ZStack {                            
+                        ZStack {
                             Image("MCQpizzaTimeLOGO")
                                 .resizable()
                                 .scaledToFit()
@@ -83,7 +83,6 @@ struct ContentView: View {
                                     )
                             }
                         }
-                        
                         
                         HStack(spacing: -screenWidth/5) { // Pizza Buttons TOP
                             Button {
@@ -123,7 +122,6 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: screenWidth / 2.5)
-                                //                                .border(Color.green)
                                     .padding(EdgeInsets (top: 0, leading: 0, bottom: 20, trailing: 0))
                                     .offset(x: -1, y: movePizza == .map ? -200 : -2)
                             }
@@ -146,7 +144,6 @@ struct ContentView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: screenWidth / 2.5)
-                                //                                .border(Color.red)
                                     .offset(x: movePizza == .closest ? 70 :-3, y: movePizza == .closest ? -50 : 0)
                             }
                             .contentShape(TriangleLeft()
@@ -220,7 +217,7 @@ struct ContentView: View {
                                 //                                .border(Color.red)
                                     .offset(x: movePizza == .about ? 70 : -3, y: movePizza == .about ? 50 : 1)
                             }
-                            .contentShape(TriangleRight()
+                            .contentShape(TriangleMiddle()
                                 .rotation(.degrees(180)))
                             
                         }// END HStack PiBu top 3
@@ -237,10 +234,6 @@ struct ContentView: View {
         .navigationBarBackButtonHidden(true)
     }
     // FUNCTIONS for page (maybe move to separate page)
-    func soundButton() {
-        musicState.isPlaying.toggle()
-        print("Music is \(musicState.isPlaying ? "on" : "off")")
-    }
     func playAudioSoundForPage(_ audioFileName: String) {
         
         var soundIdRing:SystemSoundID = 0
@@ -274,17 +267,17 @@ struct TriangleMiddle: Shape {
         return path
     }
 }
-struct TriangleRight: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.closeSubpath()
-        return path
-    }
-}
+//struct TriangleRight: Shape {
+//    func path(in rect: CGRect) -> Path {
+//        var path = Path()
+//        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+//        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+//        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+//        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
+//        path.closeSubpath()
+//        return path
+//    }
+//}
 #Preview {
     ContentView()
         .environmentObject(MusicState())

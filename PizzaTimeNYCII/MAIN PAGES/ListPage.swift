@@ -40,7 +40,7 @@ struct ListPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: soundButton) {
+                        Button(action: musicState.soundButton) {
                             Image(
                                 musicState.isPlaying ? "MCQMapSOUND" : "MCQMapSOUNDNOT")
                             .resizable()
@@ -71,7 +71,7 @@ struct ListPage: View {
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                     
                     HStack/*(alignment: .bottom)*/ { // Buttons
-                        Button(action: mapButton) {
+                        Button(action: nav.mapButton) {
                             Image("MCQTabBarMAP")
                                 .resizable()
                                 .scaledToFit()
@@ -79,7 +79,7 @@ struct ListPage: View {
                         }
                         .padding(EdgeInsets(top: -20, leading: 0, bottom: -200, trailing: -8))
                         
-                        Button(action: listButton) {
+                        Button(action: nav.listButton) {
                             Image("MCQTabBarLIST")
                                 .resizable()
                                 .scaledToFit()
@@ -95,21 +95,6 @@ struct ListPage: View {
     
     
     // FUNCTIONS for page (maybe move to separate page)
-    func soundButton() {
-        musicState.isPlaying.toggle()
-        print("Music is \(musicState.isPlaying ? "on" : "off")")
-    }
-    func mapButton() {
-        print("back to the map!")
-        nav.lastPage = nav.activePage
-        nav.activePage = .map
-    }
-    func listButton() {
-        // navigate to list page
-        print("back to the list!")
-        nav.lastPage = nav.activePage
-        nav.activePage = .list
-    }
     func searchButton() {
         // TODO: populate a search view
         print("search button pressed")

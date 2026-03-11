@@ -17,12 +17,7 @@ struct FeedbackPage: View {
     }
     @State private var feedbackSelected: FeedbackType = .positive
     @State private var userFeedback: String = ""
-    //    @FocusState private var userFeedbackFieldIsFocused: Bool = false
     @State private var emailOptional: String = ""
-    //    @FocusState private var emailFieldIsFocused: Bool = false
-    //    init() {
-    //        UITextView.appearance().backgroundColor = .clear
-    //    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -98,7 +93,7 @@ struct FeedbackPage: View {
                     //                    .textFieldStyle(.plain)
                         .frame(width: screenWidth / 1.25)
                         .background(.ptnColorOrange)
-//                        .padding()
+                    //                        .padding()
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                     

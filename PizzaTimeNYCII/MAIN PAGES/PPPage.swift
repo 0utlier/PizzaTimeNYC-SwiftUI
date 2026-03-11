@@ -10,9 +10,7 @@ import SwiftUI
 struct PPPage: View {
     @EnvironmentObject var musicState: MusicState
     @EnvironmentObject var nav: NavigationManager
-    @State private var placeName = ""
-    @State private var placeAddress = ""
-    @State private var pictureTaken = false
+    var pizzaPlace: PizzaPlace?
     
     var body: some View {
         //        NavigationView {
@@ -34,7 +32,7 @@ struct PPPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: listButton) {
+                        Button(action: nav.listButton) {
                             Image("MCQMapOPTIONS")
                                 .resizable()
                                 .scaledToFit()
@@ -42,7 +40,7 @@ struct PPPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: soundButton) {
+                        Button(action: musicState.soundButton) {
                             Image(
                                 musicState.isPlaying ? "MCQMapSOUND" : "MCQMapSOUNDNOT")
                             .resizable()
@@ -67,7 +65,7 @@ struct PPPage: View {
                     
                     Spacer()
                     
-                    Button(action: goButton) {
+                    Button(action: nav.directionsButton) {
                         Image("MCQppiGO")
                         //                                .resizable()
                             .scaledToFit()
@@ -79,22 +77,6 @@ struct PPPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-    }
-    //    }
-    // FUNCTIONS for page (maybe move to separate page)
-    func soundButton() {
-        musicState.isPlaying.toggle()
-        print("Music is \(musicState.isPlaying ? "on" : "off")")
-    }
-    func listButton() {
-        // navigate to list page
-        print("back to the list!")
-        nav.lastPage = nav.activePage
-        nav.activePage = .list
-    }
-    func goButton() {
-        // TODO: send to map page with current pizza place
-        print("Please enter a name!")
     }
 }
 

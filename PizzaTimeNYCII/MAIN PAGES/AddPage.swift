@@ -63,7 +63,7 @@ struct AddPage: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                         
-                        Button(action: soundButton) {
+                        Button(action: musicState.soundButton) {
                             Image(
                                 musicState.isPlaying ? "MCQMapSOUND" : "MCQMapSOUNDNOT")
                             .resizable()
@@ -156,15 +156,6 @@ struct AddPage: View {
     }
     
     // FUNCTIONS for page (maybe move to separate page)
-    func soundButton() {
-        musicState.isPlaying.toggle()
-        print("Music is \(musicState.isPlaying ? "on" : "off")")
-    }
-    func optionsButton() {
-        // navigate to options
-        print("back to all of the options!")
-        nav.goHome()
-    }
     func cameraButton() {
         showingImagePicker = true
         // TODO: open camera to take picture [change bool if picture is taken]

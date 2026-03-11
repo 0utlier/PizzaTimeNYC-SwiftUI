@@ -23,14 +23,14 @@ struct PPListViewItem: View {
             HStack { // all details
                 VStack { // address
                     Text(pizzaPlace.street)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     Text(pizzaPlace.city + " " + String(pizzaPlace.zip))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 } // END VSTACK address
                 .foregroundColor(Color.ptnColorBlue)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//                Spacer()
+                //                Spacer()
                 VStack {
                     //                    Spacer()
                     HStack {
@@ -39,7 +39,7 @@ struct PPListViewItem: View {
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 30))
                         Text(String(pizzaPlace.percentageDislikes) + "%")
                             .foregroundColor(Color.ptnColorRedRating)
-//                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
+                        //                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15))
                     }
                     Text(String(pizzaPlace.distance) + " mi")
                         .foregroundColor(Color.ptnColorBlue)
@@ -49,13 +49,13 @@ struct PPListViewItem: View {
             }
         }
         .font(Font.custom("Rubik-Light", size: 25))
-//        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+        //        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
         
         
     }
 }
 #Preview {
-//        ListPage()
+    //        ListPage()
     //    .environmentObject(MusicState())
     PPListViewItem(pizzaPlace: pizzaPlaces[0])
     //    PPPageViewItem(pizzaPlace: pizzaPlaces[0])

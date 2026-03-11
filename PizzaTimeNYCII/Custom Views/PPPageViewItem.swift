@@ -18,11 +18,11 @@ struct PPPageViewItem: View {
             //                .ignoresSafeArea()
             VStack {
                 Text(pizzaPlace.name)
-                    .font(.largeTitle)
+                    .font(Font.custom("Rubik-Bold", size: 25))
                     .foregroundColor(Color.ptnColorRed)
                 
                 HStack(alignment: .top) {
-                    Text("\(pizzaPlace.street)\nNY NY ZIP\nDistance mi away")
+                    Text("\(pizzaPlace.street)\n\(pizzaPlace.city) \(pizzaPlace.zip)\nDistance mi away")
                         .foregroundColor(Color.ptnColorBlue)
                     
                     Spacer()
@@ -30,7 +30,7 @@ struct PPPageViewItem: View {
                         Button(action:ratePos) {
                             Image("MCQSliceGreen")
                         }
-                        Text("100%")
+                        Text(String(pizzaPlace.percentageLikes) + "%")
                             .foregroundColor(Color.ptnColorGreen)
                     }
                     
@@ -38,26 +38,30 @@ struct PPPageViewItem: View {
                         Button(action:rateNeg) {
                             Image("MCQSliceRed")
                         }
-                        Text("0%")
+                        Text(String(pizzaPlace.percentageDislikes) + "%")
                             .foregroundColor(Color.ptnColorRedRating)
                     }
                 }
                 .padding()
             }
+            .font(Font.custom("Rubik-Light", size: 20))
         }
     }
 }
 
 func ratePos() {
+    // TODO: change rating
     print("User likes this place")
 }
 
 func rateNeg() {
+    // TODO: change rating
     print("User does not this place")
 }
 
 #Preview {
     PPPageViewItem(pizzaPlace: pizzaPlaces[0])
+    //    PPPage(pizzaPlace: pizzaPlaces[0])
     //    PPListViewItem(pizzaPlace: pizzaPlaces[0])
     //    PPListViewItem(pizzaPlace: pizzaPlaces[0])
     //    PPListViewItem(pizzaPlace: pizzaPlaces[0])
