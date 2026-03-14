@@ -21,6 +21,8 @@ struct AddPage: View {
     @StateObject var camera = CameraManager()
     @State private var showCamera = false
     
+    @State private var showingOptions = false
+    
     var body: some View {
         GeometryReader { geometry in
             let screenWidth = geometry.size.width
@@ -84,18 +86,18 @@ struct AddPage: View {
                     TextField(text: $placeName, prompt: Text(" PP NAME")) {}
                     //                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     //                    .textFieldStyle(.plain)
-                    .frame(width: screenWidth / 1.25, height: screenHeight / 20)
-                    .background(Color.ptnColorOrange)
-                    .padding()
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
+                        .frame(width: screenWidth / 1.25, height: screenHeight / 20)
+                        .background(Color.ptnColorOrange)
+                        .padding()
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                     Text("ADDRESS")
                         .foregroundColor(Color.ptnColorRed)
                         .font(Font.custom("Rubik-Bold", size: 25))
                         .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
                         .padding(EdgeInsets(top: 20, leading: 0, bottom: -20, trailing: 0))
-
+                    
                     ZStack(alignment: .leading) {
                         Button(action: findLocationAddress) {
                             Image("MCQMapLOCATION")
@@ -114,32 +116,52 @@ struct AddPage: View {
                             .disableAutocorrection(true)
                     }
                     
-                    Text("ADD A PICTURE")
-                        .foregroundColor(Color.ptnColorRed)
-                        .font(Font.custom("Rubik-Bold", size: 25))
-                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
-
-                    Button("Open Camera") {
-                        showCamera = true
-                    }
-                    .fullScreenCover(isPresented: $showCamera) {
-                        CameraView { capturedImage in
-                            image = Image(uiImage: capturedImage) }
-                    }
+//                    Text("ADD A PICTURE")
+//                        .foregroundColor(Color.ptnColorRed)
+//                        .font(Font.custom("Rubik-Bold", size: 25))
+//                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
                     
+//                    Button("Open Camera") {
+//                        showCamera = true
+//                    }
+//                    .fullScreenCover(isPresented: $showCamera) {
+//                        CameraView { capturedImage in
+//                            image = Image(uiImage: capturedImage) }
+//                    }
                     
-                    Button(action: cameraButton) {
+                    Button(action: {showingOptions = true}) {
                         image?
                             .resizable()
                             .scaledToFit()
                             .frame(width: screenWidth / 2.25)
                         if image == nil {
-                            Image("pizzaCamera2")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: screenWidth / 2.25)
+                            VStack {
+                                Text("ADD A PICTURE")
+                                    .foregroundColor(Color.ptnColorRed)
+                                    .font(Font.custom("Rubik-Bold", size: 25))
+                                    .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+                                
+                                Image("pizzaCamera2")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: screenWidth / 2.25)
+                            }
                         }
                     }
+                    .confirmationDialog("Add a Picture!", isPresented: $showingOptions, titleVisibility: .visible) {
+                        Button("Open Camera") {
+                            showCamera = true
+                        }
+                        .fullScreenCover(isPresented: $showCamera) {
+                            CameraView { capturedImage in
+                                image = Image(uiImage: capturedImage) }
+                        }
+                        Button("Choose Picture") {
+                            showingImagePicker = true
+                        }
+                        Button("Cancel", role: .cancel) { }
+                    } // end conirmation dialog
+                    
                     Button(action: addButton) {
                         Image("MCQaddADD")
                             .resizable()
