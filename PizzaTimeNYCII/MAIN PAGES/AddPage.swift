@@ -116,19 +116,21 @@ struct AddPage: View {
                             .disableAutocorrection(true)
                     }
                     
-//                    Text("ADD A PICTURE")
-//                        .foregroundColor(Color.ptnColorRed)
-//                        .font(Font.custom("Rubik-Bold", size: 25))
-//                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+                    //                    Text("ADD A PICTURE")
+                    //                        .foregroundColor(Color.ptnColorRed)
+                    //                        .font(Font.custom("Rubik-Bold", size: 25))
+                    //                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
                     
-//                    Button("Open Camera") {
-//                        showCamera = true
-//                    }
-//                    .fullScreenCover(isPresented: $showCamera) {
-//                        CameraView { capturedImage in
-//                            image = Image(uiImage: capturedImage) }
-//                    }
+                    //                    Button("Open Camera") {
+                    //                        showCamera = true
+                    //                    }
+                    //                    .fullScreenCover(isPresented: $showCamera) {
+                    //                        CameraView { capturedImage in
+                    //                            image = Image(uiImage: capturedImage) }
+                    //                    }
                     
+                    
+                    // Camera button
                     Button(action: {showingOptions = true}) {
                         image?
                             .resizable()
