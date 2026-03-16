@@ -13,13 +13,10 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     
     let session = AVCaptureSession()
     private let photoOutput = AVCapturePhotoOutput()
-    
     private var device: AVCaptureDevice?
-    
     var onPhotoCaptured: ((UIImage) -> Void)?
     
     func start() {
-        
         session.beginConfiguration()
         
         guard let camera = AVCaptureDevice.default(for: .video),
@@ -31,11 +28,9 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         if session.canAddInput(input) {
             session.addInput(input)
         }
-        
         if session.canAddOutput(photoOutput) {
             session.addOutput(photoOutput)
         }
-        
         session.commitConfiguration()
         session.startRunning()
     }
@@ -43,12 +38,10 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     func stop() {
         session.stopRunning()
     }
-    
     func takePhoto() {
         let settings = AVCapturePhotoSettings()
         photoOutput.capturePhoto(with: settings, delegate: self)
     }
-    
     func setZoom(_ factor: CGFloat) {
         
         guard let device = device else { return }
@@ -57,7 +50,6 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         device.videoZoomFactor = max(1.0, min(factor, device.activeFormat.videoMaxZoomFactor))
         device.unlockForConfiguration()
     }
-    
     func photoOutput(
         _ output: AVCapturePhotoOutput,
         didFinishProcessingPhoto photo: AVCapturePhoto,

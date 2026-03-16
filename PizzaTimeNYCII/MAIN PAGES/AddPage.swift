@@ -116,18 +116,18 @@ struct AddPage: View {
                             .disableAutocorrection(true)
                     }
                     
-                    //                    Text("ADD A PICTURE")
-                    //                        .foregroundColor(Color.ptnColorRed)
-                    //                        .font(Font.custom("Rubik-Bold", size: 25))
-                    //                        .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
+//                                        Text("ADD A PICTURE")
+//                                            .foregroundColor(Color.ptnColorRed)
+//                                            .font(Font.custom("Rubik-Bold", size: 25))
+//                                            .frame(maxWidth: screenWidth / 1.25, alignment: .leading)
                     
-                    //                    Button("Open Camera") {
-                    //                        showCamera = true
-                    //                    }
-                    //                    .fullScreenCover(isPresented: $showCamera) {
-                    //                        CameraView { capturedImage in
-                    //                            image = Image(uiImage: capturedImage) }
-                    //                    }
+//                                        Button("Open Camera") {
+//                                            showCamera = true
+//                                        }
+//                    .fullScreenCover(isPresented: $showCamera) {
+//                                            CameraView { capturedImage in
+//                                                image = Image(uiImage: capturedImage) }
+//                                        }
                     
                     
                     // Camera button
@@ -154,10 +154,10 @@ struct AddPage: View {
                         Button("Open Camera") {
                             showCamera = true
                         }
-                        .fullScreenCover(isPresented: $showCamera) {
-                            CameraView { capturedImage in
-                                image = Image(uiImage: capturedImage) }
-                        }
+//                        .fullScreenCover(isPresented: $showCamera) {
+//                            CameraView { capturedImage in
+//                                image = Image(uiImage: capturedImage) }
+//                        }
                         Button("Choose Picture") {
                             showingImagePicker = true
                         }
@@ -176,7 +176,13 @@ struct AddPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        // display captured or selected image over camera
         .onChange(of: inputImage) { _ in loadImage() }
+        // Show camera overlay when camera is selected
+        .fullScreenCover(isPresented: $showCamera) {
+                                CameraView { capturedImage in
+                                    image = Image(uiImage: capturedImage) }
+                            }
     }
     
     // FUNCTIONS for page (maybe move to separate page)
