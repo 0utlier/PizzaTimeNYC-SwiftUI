@@ -53,22 +53,51 @@ struct ListPage: View {
                     ZStack(alignment: .leading) { // List
                         Color.green // behind the list
                         
-                        List(pizzaPlaces, id: \.id) { PizzaPlace in
-                            
-                            PPListViewItem(pizzaPlace: PizzaPlace)
-                                .listRowBackground(Color.ptnColorYellow)
-                                .listRowSeparatorTint(.purple)
-                        }
-                        .listStyle(PlainListStyle())
-                        //                        .colorMultiply(.ptnColorYellow)
                         
-                        .frame(width: screenWidth, alignment: .leading)
-                        // TODO: refresh with pizza dollar
-                        //                    .refreshable {
-                        //                                 await listButton()
-                        //                             }
+                        
+                        
+                        RefreshableScrollView {
+                            await reloadList()
+                        } content: {
+                            LazyVStack(spacing: 0) {
+                                ForEach(pizzaPlaces, id: \.id) { pizzaPlace in
+                                    PPListViewItem(pizzaPlace: pizzaPlace)
+                                        .frame(width: screenWidth, alignment: .leading)
+                                        .background(Color.ptnColorYellow)                // replaces .listRowBackground
+                                    // Purple separator — replaces .listRowSeparatorTint(.purple)
+                                    // You don't want one after the very last row, so we check the index
+                                    if pizzaPlace.id != pizzaPlaces.last?.id { // prevents an orphan separator dangling below the final row
+                                        Divider()
+                                            .overlay(Color.purple)           // tints the 1pt line purple
+                                            .padding(.leading, 0)            // full-width, matching PlainListStyle
+                                    }
+                                }
+                            }
+                        }
+                        
+                        //                        List(pizzaPlaces, id: \.id) { PizzaPlace in
+                        //
+                        //                            PPListViewItem(pizzaPlace: PizzaPlace)
+                        //                                .listRowBackground(Color.ptnColorYellow)
+                        //                                .listRowSeparatorTint(.purple)
+                        //                        }
+                        //                        .listStyle(PlainListStyle())
+                        //                        //                        .colorMultiply(.ptnColorYellow)
+                        //
+                        //                        .frame(width: screenWidth, alignment: .leading)
+                        //                        // TODO: refresh with pizza dollar
+                        //                        .refreshable {
+                        //                            await reloadList()
+                        //                        }
+                        
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                     }
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     HStack/*(alignment: .bottom)*/ { // Buttons
                         Button(action: nav.mapButton) {
@@ -95,6 +124,10 @@ struct ListPage: View {
     
     
     // FUNCTIONS for page (maybe move to separate page)
+    func reloadList() {
+        // TODO: check for updated places, refresh current location, sort for closest
+        print("reloading list!")
+    }
     func searchButton() {
         // TODO: populate a search view
         print("search button pressed")
