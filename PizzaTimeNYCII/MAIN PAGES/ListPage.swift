@@ -59,7 +59,6 @@ struct ListPage: View {
                         RefreshableScrollView {
                             
                             await reloadList()
-                            
                         } content: {
                             LazyVStack(spacing: 0) {
                                 ForEach(pizzaPlaces, id: \.id) { pizzaPlace in
