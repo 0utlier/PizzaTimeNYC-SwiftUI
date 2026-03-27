@@ -50,7 +50,12 @@ class NavigationManager: ObservableObject {
         activePage = .map
         print("Open the map for THIS pizzaPlace, with directions")
     }
-    
+    func addNewButton() {
+        print("Add new pizza place!")
+        lastPage = activePage
+        activePage = .add
+//        TODO: include coordinate/address here possibly? check/use state to set that address in the textbar. 
+    }
     
 }
 
