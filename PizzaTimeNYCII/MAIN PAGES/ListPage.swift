@@ -57,7 +57,6 @@ struct ListPage: View {
                         
                         
                         RefreshableScrollView {
-                            
                             await reloadList()
                         } content: {
                             LazyVStack(spacing: 0) {
