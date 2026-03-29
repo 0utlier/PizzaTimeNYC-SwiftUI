@@ -95,9 +95,8 @@ struct ListPage: View {
                     
                     
                     
-                    
-                    
-                    
+
+
                     
                     HStack/*(alignment: .bottom)*/ { // Buttons
                         Button(action: nav.mapButton) {
