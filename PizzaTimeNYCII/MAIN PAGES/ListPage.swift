@@ -94,8 +94,6 @@ struct ListPage: View {
                     }
                     
                     
-                    
-
 
                     
                     HStack/*(alignment: .bottom)*/ { // Buttons
